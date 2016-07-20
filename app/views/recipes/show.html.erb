@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @recipe.title %>
-</p>
+<h2 align="center">Title:<%= @recipe.title %></h2>
 
-<p>
-  <strong>Description:</strong>
-  <%= @recipe.description %>
-</p>
+<div class="well col-xs-8 col-xs-offset-2">
+  <h4 class="center description"><strong>Description:</strong></h4>
+  <hr>
+  <%= simple_format(@recipe.description) %>
+  <div class="recipe-actions">
+  
+  <%= link_to 'Edit', edit_recipe_path(@recipe), class: "btn btn-xs btn-primary" %> |
+  <%= link_to 'Destroy', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+  <%= link_to 'View all Recipes', recipes_path, class: "btn btn-xs btn-success" %> 
+    
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+  </div>
+</div>
