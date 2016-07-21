@@ -9,12 +9,12 @@
           <%= link_to recipe.title, recipe_path(recipe) %>
         </div>
         <div class="recipe-body">
-          <%= truncate(recipe.description, length: 100) %> <!-- I have used the Truncate methode-->
+          <%= truncate(recipe.description, length: 100) %> <!-- I have used the Truncate method-->
         </div>
         <div class="recipe-actions">
           <%= link_to 'Update', edit_recipe_path(recipe), class: "btn btn-xs btn-primary" %> |
-          <%= link_to 'Delete', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %> |
-          <!-- I have taken @ from recipe_path(@recipe) as we are refering to all recipes not each recipe as it is the case in the show page -->
+          <%= link_to 'Delete', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+          <!-- I have taken @ from (@recipe) on the Links as we are referring to all recipes not each recipe as it is the case in the show page -->
         </div>
       </div>
     </div>
