@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  resources :recipes
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
- # root 'pages#home'
   root 'pages#home'
-  get 'pages/about', to: 'pages#about'
+  resources :recipes
+  
+  resources :users, except: [:new]
+  get 'signup', to: 'users#new' 
 
+  
+  
+  
+  get 'pages/about', to: 'pages#about'
   get 'about', to: 'pages#about' 
   
   # Example of regular route:
