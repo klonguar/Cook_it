@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
   def create
     @user = User.new(user_params)
     respond_to do |format|
@@ -16,6 +20,20 @@ class UsersController < ApplicationController
   end
   
 
+
+  def update
+    @user = User.find(params[:id]) #Source:https://www.railstutorial.org/book/updating_and_deleting_users
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to recipes_path, notice: 'Your account was updated successfully' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+
+
   
   
   private
@@ -23,3 +41,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password)
   end
 end
+
+#source:https://www.railstutorial.org/book/updating_and_deleting_users
