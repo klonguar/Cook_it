@@ -29,3 +29,5 @@ ActiveRecord::Schema.define(version: 20160723113528) do
   end
 
 end
+
+# These code were created were created when we run: rake db:migrate 

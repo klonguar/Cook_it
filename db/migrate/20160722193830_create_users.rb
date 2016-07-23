@@ -8,3 +8,4 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 end
+# This page was created when we generate the following: rails generate User.
