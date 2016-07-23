@@ -12,5 +12,8 @@
       <%= yield %>
     </div>
     <%= render 'layouts/footer'%>
+    <%= debug(params) if Rails.env.development? %> <!--This displays some useful information about 
+    each page using the built-in debug method and params variable- 
+    source: https://www.railstutorial.org/book/sign_up -->
   </body>
 </html>

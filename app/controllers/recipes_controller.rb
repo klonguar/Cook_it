@@ -24,8 +24,9 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
+    
     @recipe = Recipe.new(recipe_params)
-
+    @recipe.user = User.first #this will ensure that recipe has a user source: video
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
