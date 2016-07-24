@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+    
+  def show
+    @user = User.find(params[:id])
+  end
   
   def edit
     @user = User.find(params[:id])
@@ -42,4 +46,5 @@ class UsersController < ApplicationController
   end
 end
 
+#this code:  @user = User.find(params[:id]) 
 #source:https://www.railstutorial.org/book/updating_and_deleting_users
