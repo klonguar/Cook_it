@@ -1,6 +1,7 @@
 <h1 align="center">COOK IT USERS</h1>
 <div align="center">
-    <% @users.each do |user| %><!--loop through all users that exist in the app -->
+    <%= will_paginate %> <!-- this will add a display for Pagination -->
+    <% @users.each do |user| %><!--This statement loop through all users that exist in the app -->
         <ul class="listing">
             <div class="row">
                 <div class="well col-md-4 col-md-offset-4">
@@ -16,4 +17,5 @@
             </div>
         </ul>
     <% end %>
+    <%= will_paginate %> <!-- this will add a display for Pagination -->
 </div>

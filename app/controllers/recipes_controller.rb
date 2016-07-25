@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(page: params[:page], per_page: 2)#Source: https://www.railstutorial.org/book/updating_and_deleting_users
   end
 
   # GET /recipes/1

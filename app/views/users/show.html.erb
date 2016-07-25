@@ -8,5 +8,10 @@
 </div>
 
 <h4 align="center"><%= @user.username %>'s recipes</h4>
-<%= render 'recipes/recipe', obj: @user.recipes%><!-- obj source video -->
-
+<div class="center">
+  <%= will_paginate @user_recipes %>
+</div>
+<%= render 'recipes/recipe', obj: @user_recipes%><!-- obj source video -->
+<div class="center">
+  <%= will_paginate @user_recipes %>
+</div>
