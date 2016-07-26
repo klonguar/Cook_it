@@ -24,11 +24,10 @@
   <hr>
   <%= simple_format(@recipe.description) %>
   <div class="recipe-actions">
-  
-  <%= link_to 'Update', edit_recipe_path(@recipe), class: "btn btn-xs btn-primary" %> |
-  <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %> |
-  <%= link_to 'All Recipes', recipes_path, class: "btn btn-xs btn-success" %> 
-    
-
+    <% if logged_in? && current_user == @recipe.user %>
+      <%= link_to 'Update', edit_recipe_path(@recipe), class: "btn btn-xs btn-primary" %> |
+      <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %> |
+    <%end%>  
+      <%= link_to 'All Recipes', recipes_path, class: "btn btn-xs btn-success" %>
   </div>
 </div>

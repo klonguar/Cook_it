@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]#Before filters use the before_action command to arrange for a particular method to be called before the given actions,
+                                                                    #This before action will restrict the filter to act only :show, :edit, :update, :destroy
 
   # GET /recipes
   # GET /recipes.json
@@ -71,3 +72,5 @@ class RecipesController < ApplicationController
       params.require(:recipe).permit(:title, :description)
     end
 end
+
+#Source:https://www.railstutorial.org/book/updating_and_deleting_users

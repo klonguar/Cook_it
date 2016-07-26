@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+before_action :set_user, only: [:edit, :update, :show]#Before filters use the before_action command to arrange for a particular method to be called before the given actions.
+
     
   def new
     @user = User.new
@@ -9,12 +11,10 @@ class UsersController < ApplicationController
   end
     
   def show
-    @user = User.find(params[:id])
     @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 1) #Source: https://www.railstutorial.org/book/updating_and_deleting_users
   end
   
   def edit
-    @user = User.find(params[:id])
   end
   
   def create
@@ -31,7 +31,6 @@ class UsersController < ApplicationController
 
 
   def update
-    @user = User.find(params[:id]) #Source:https://www.railstutorial.org/book/updating_and_deleting_users
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to recipes_path, notice: 'Your account was updated successfully' }
@@ -49,6 +48,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end
+  
+  def set_user
+    @user = User.find(params[:id]) #Source:https://www.railstutorial.org/book/updating_and_deleting_users
+  end
+  
 end
 
 #this code:  @user = User.find(params[:id]) 
