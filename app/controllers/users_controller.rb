@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :set_user, only: [:edit, :update, :show]#Before filters use the before_action command to arrange for a particular method to be called before the given actions.
+  before_action :require_same_user, only: [:edit, :update]# this will require the same user who created the account to perform only edit, update actions 
 
     
   def new
@@ -45,14 +46,22 @@ before_action :set_user, only: [:edit, :update, :show]#Before filters use the be
   
   
   private
-  def user_params
-    params.require(:user).permit(:username, :email, :password)
-  end
+    def user_params
+      params.require(:user).permit(:username, :email, :password)
+    end
+    
+    def set_user
+      @user = User.find(params[:id]) #Source:https://www.railstutorial.org/book/updating_and_deleting_users
+    end
   
-  def set_user
-    @user = User.find(params[:id]) #Source:https://www.railstutorial.org/book/updating_and_deleting_users
-  end
   
+  def require_same_user
+    if current_user != @user
+        respond_to do |format| 
+          format.html { redirect_to root_path, notice: 'You can only edit your own account' }
+        end
+    end
+  end
 end
 
 #this code:  @user = User.find(params[:id]) 

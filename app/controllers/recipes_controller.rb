@@ -1,6 +1,9 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]#Before filters use the before_action command to arrange for a particular method to be called before the given actions,
                                                                     #This before action will restrict the filter to act only :show, :edit, :update, :destroy
+  before_action :require_user, except: [:index, :show] # This will restrit all action except the index and sow action as it needs a logged in user too perform the other action
+  before_action :require_same_user, only: [:edit, :update, :destroy]# this will require the same user who created the recipes to perform only edit, update and destroy actions 
+
 
   # GET /recipes
   # GET /recipes.json
@@ -27,7 +30,7 @@ class RecipesController < ApplicationController
   def create
     
     @recipe = Recipe.new(recipe_params)
-    @recipe.user = User.first #this will ensure that recipe has a user source: video
+    @recipe.user = current_user #this will ensure that recipe has a user source: video
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
@@ -60,6 +63,8 @@ class RecipesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,6 +76,15 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipe).permit(:title, :description)
     end
+  end
+    def require_same_user
+      if current_user != @recipe.user
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: 'You can only edit your own account' }
+        end
+    end
+  
+  
 end
 
 #Source:https://www.railstutorial.org/book/updating_and_deleting_users

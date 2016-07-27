@@ -15,13 +15,12 @@ class ApplicationController < ActionController::Base
     end
     
     def require_user
-      respond_to do |format|
       if !logged_in? # if the user is not log in, he will be redirected to root page
+        respond_to do |format|
           format.html { redirect_to root_path, notice: "You must be logged in to perform that action"}
+        end
       end
-    
     end
-  end
 end
-#Source : http://rails-4-0.railstutorial.org/book/sign_in_out and videos
+#Source : http://rails-4-0.railstutorial.org/book/sign_in_out and video
 
