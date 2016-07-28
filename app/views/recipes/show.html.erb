@@ -24,7 +24,7 @@
   <hr>
   <%= simple_format(@recipe.description) %>
   <div class="recipe-actions">
-    <% if logged_in? && current_user == @recipe.user %>
+    <% if logged_in? && (current_user == @recipe.user || current_user.admin?) %><!-- This statemnet checks if the user logged in is the recipe creator and  the admin-->
       <%= link_to 'Update', edit_recipe_path(@recipe), class: "btn btn-xs btn-primary" %> |
       <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %> |
     <%end%>  

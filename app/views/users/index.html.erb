@@ -1,3 +1,5 @@
+<p align="center" id="notice"><%= notice %></p>
+
 <h1 align="center">COOK IT USERS</h1>
 <div align="center">
     <%= will_paginate %> <!-- this will add a display for Pagination -->
@@ -12,7 +14,14 @@
                         <small>
                             <%= pluralize(user.recipes.count, "recipe") if user.recipes %><!--list how many recipes a user has created if he has recipe--> 
                         </small>
+                    
                     </li>
+                    <% if logged_in? and current_user.admin? %>
+                        <li><%= link_to "Delete this user", user_path(user), method: :delete, 
+                        data: { confirm: "Are you sure you want to delete the user and all their articles?" } %>
+                        </li>
+                    <%end%>
+                
                 </div>
             </div>
         </ul>

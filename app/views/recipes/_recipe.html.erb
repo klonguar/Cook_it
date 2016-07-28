@@ -18,7 +18,7 @@
           to display timing - source:https://www.railstutorial.org/book/user_microposts-->
           </div>
         </div>
-        <% if logged_in? && current_user == recipe.user %>
+        <% if logged_in? && (current_user == recipe.user || current_user.admin?) %><!-- This statemnet checks if the user logged in is the recipe creator and  the admin-->
           <div class="recipe-actions">
             <%= link_to 'Update', edit_recipe_path(recipe), class: "btn btn-xs btn-primary" %> |
             <%= link_to 'Delete', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>

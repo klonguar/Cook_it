@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-    has_many :recipes # this methode create association with recipe
+    has_many :recipes, dependent: :destroy # this methode create association with recipe
     before_save { self.email = email.downcase } # this will convert the email to a lowercase before it is saved in the DataBase
     validates :username, presence: true, 
                          uniqueness: { case_sensitive: false }, 

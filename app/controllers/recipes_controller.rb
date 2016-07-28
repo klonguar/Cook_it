@@ -78,7 +78,7 @@ class RecipesController < ApplicationController
     end
   end
     def require_same_user
-      if current_user != @recipe.user
+      if current_user != @recipe.user and !current_user.admin?# this statemnet checks if the curent user is not the recipe creator and not the admin 
         respond_to do |format|
           format.html { redirect_to root_path, notice: 'You can only edit your own account' }
         end

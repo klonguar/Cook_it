@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-before_action :set_user, only: [:edit, :update, :show]#Before filters use the before_action command to arrange for a particular method to be called before the given actions.
-  before_action :require_same_user, only: [:edit, :update]# this will require the same user who created the account to perform only edit, update actions 
+  before_action :set_user, only: [:edit, :update, :show]#Before filters use the before_action command to arrange for a particular method to be called before the given actions.
+  before_action :require_same_user, only: [:edit, :update, :destroy]# this will require the same user who created the account to perform only edit, update actions 
+  before_action :require_admin, only: [:destroy]# this will require the same user who created the recipes to perform only edit, update and destroy actions 
 
     
   def new
@@ -15,6 +16,14 @@ before_action :set_user, only: [:edit, :update, :show]#Before filters use the be
     @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 1) #Source: https://www.railstutorial.org/book/updating_and_deleting_users
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: 'User and all recipes created by user have been deleted' }
+    end
+  end
+  
   def edit
   end
   
@@ -22,7 +31,8 @@ before_action :set_user, only: [:edit, :update, :show]#Before filters use the be
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to recipes_path, notice: 'Welcome to COOK IT APP #{@user.username}' }
+        session[:user_id] = @user.id
+        format.html { redirect_to user_path(@user), notice: 'Welcome to COOK IT APP #{@user.username}' }
       else
         format.html { render :new }
       end
@@ -56,9 +66,17 @@ before_action :set_user, only: [:edit, :update, :show]#Before filters use the be
   
   
   def require_same_user
-    if current_user != @user
+    if current_user != @user and !current_user.admin? # this statemnet checks if the curent user is not the recipe creator and not the admin
         respond_to do |format| 
           format.html { redirect_to root_path, notice: 'You can only edit your own account' }
+        end
+    end
+  end
+  
+  def require_admin
+    if logged_in? and !current_user.admin? # this statemnet checks if the curent user is not the recipe creator and not the admin
+        respond_to do |format| 
+          format.html { redirect_to root_path, notice: 'Only admin users can perform that action' }
         end
     end
   end
