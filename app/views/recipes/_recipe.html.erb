@@ -4,6 +4,15 @@
       <div class="well well-lg">
         <div class="recipe-title">
           <%= link_to recipe.title, recipe_path(recipe) %>
+           <!-- Like/Dislike Feature -->
+            <div class='pull-right like'>
+              <%= link_to like_recipe_path(recipe, like: true), method: :post do %>
+                <i class='glyphicon glyphicon-thumbs-up'></i> &nbsp <%= recipe.thumbs_up_total%>
+              <%end%>&nbsp&nbsp
+              <%= link_to like_recipe_path(recipe, like: false), method: :post do %>
+                <i class='glyphicon glyphicon-thumbs-down'></i> &nbsp <%= recipe.thumbs_down_total%>
+              <%end%>
+            </div>
         </div>
         
         <div class="recipe-body">
@@ -17,15 +26,7 @@
             </small> <!--This code enable us to add the user data to our recipes listing using ruby method: time_ago_in_words 
           to display timing - source:https://www.railstutorial.org/book/user_microposts-->
           
-            <!-- Like/Dislike Feature -->
-            <div class='pull-right'>
-              <%= link_to like_recipe_path(recipe, like: true), method: :post do %>
-                <i class='glyphicon glyphicon-thumbs-up'></i> &nbsp <%= recipe.thumbs_up_total%>
-              <%end%>&nbsp&nbsp&nbsp
-              <%= link_to like_recipe_path(recipe, like: false), method: :post do %>
-                <i class='glyphicon glyphicon-thumbs-down'></i> &nbsp <%= recipe.thumbs_down_total%>
-              <%end%>
-            </div>
+           
           
           </div>
         </div>

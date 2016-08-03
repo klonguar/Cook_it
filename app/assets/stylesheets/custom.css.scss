@@ -62,18 +62,18 @@ footer small {
 }
 
 .recipe-title {
-font-weight: bold;
-font-size: 1.5em;
-padding-bottom: 15px;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-bottom: 15px;
 }
 .recipe-body {
-border-top: 1px solid #eaeaea;
-padding-top: 15px;
-padding-bottom: 25px;
+    border-top: 1px solid #eaeaea;
+    padding-top: 15px;
+    padding-bottom: 25px;
 }
 .recipe-meta-details {
-border-top: 1px solid #eaeaea;
-margin-top: 45px;
+    border-top: 1px solid #eaeaea;
+    margin-top: 45px;
 }
 .listing {
     list-style: none;
@@ -112,4 +112,62 @@ a.btn.btn-xs.btn-primary{
 
 a.btn.btn-xs.btn-danger{
     color: white;
+}
+
+.btn-primary{
+    color: white;
+    background-color: #65253b;
+    border-color: #65253b;
+}
+
+.btn-primary:hover{
+    color: #65253b;
+    border-color: #65253b;
+    background-color: white;
+}
+a.btn.btn-primary.btn-lg{
+    color: white;
+}
+a.btn.btn-primary.btn-lg:hover{
+    color: #65253b;
+}
+
+.pagination .active a, .pagination .active a:hover, .pagination .active a:focus, .pagination .active span, .pagination .active span:hover, .pagination .active span:focus{
+    color: #fff;
+    background-color: #65253b;
+    border-color: #65253b;
+    cursor: default;
+}
+
+.pagination li a{
+    color: #65253b;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination > li > a:hover{
+    color: white;
+    background-color: #65253b;
+    border-color: #65253b;
+}
+.form-control:focus{
+    border-color:#65253b
+}
+.recipe-title{
+    font-size: 23px;
+}
+.recipe-title a:visited{
+    color: #65253b;
+}
+.recipe-title a:hover{
+    color: #65253b;
+    background-color: transparent;
+    text-decoration: none;
+}
+.recipe-body{
+    font-size: 18px;
+    line-height: 27px;
+    color: black;
+}
+.like{
+    font-size: 18px
 }
