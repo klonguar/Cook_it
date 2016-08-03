@@ -2,7 +2,7 @@ class Recipe < ActiveRecord::Base
     belongs_to :user #this methode create association with user 
     has_many :likes
     validates :title, presence: true, 
-                      length: {minimum: 3, maximum: 50}
+                      length: {minimum: 3, maximum: 35}
     
     validates :description, presence: true, 
                             length: {minimum: 10, maximum: 10000}
