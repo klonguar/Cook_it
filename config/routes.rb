@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  resources :recipes
+  resources :recipes do
+    member do
+      post'like'
+    end
+  end
   
   resources :users, except: [:new]
   get 'signup', to: 'users#new' 

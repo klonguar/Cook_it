@@ -8,3 +8,4 @@ module ApplicationHelper
 end
 
 # Source: https://www.railstutorial.org/book/sign_up
+# SOurce: http://stackoverflow.com/questions/14361952/rails-gravatar-helper-method

@@ -1,14 +1,22 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]#Before filters use the before_action command to arrange for a particular method to be called before the given actions,
-                                                                    #This before action will restrict the filter to act only :show, :edit, :update, :destroy
-  before_action :require_user, except: [:index, :show] # This will restrit all action except the index and sow action as it needs a logged in user too perform the other action
-  before_action :require_same_user, only: [:edit, :update, :destroy]# this will require the same user who created the recipes to perform only edit, update and destroy actions 
+  
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  #Before filters use the before_action command to arrange for a particular method to be called before the given actions,
+  #This before action will restrict the filter to act only :show, :edit, :update, :destroy
+  
+  before_action :require_user, except: [:index, :show] 
+  # This will restrit all action except the index and sow action as it needs a logged in user too perform the other action
+  
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  # this will require the same user who created the recipes to perform only edit, update and destroy actions 
 
 
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.paginate(page: params[:page], per_page: 2)#Source: https://www.railstutorial.org/book/updating_and_deleting_users
+    @recipes = Recipe.paginate(page: params[:page], per_page: 2)
+    #Source: https://www.railstutorial.org/book/updating_and_deleting_users
+    #https://hackhands.com/pagination-rails-will_paginate-gem/  
   end
 
   # GET /recipes/1
@@ -39,6 +47,21 @@ class RecipesController < ApplicationController
       end
     end
   end
+  
+def like
+  @recipe = Recipe.find(params[:id])
+  like = Like.create(like: params[:like], user: current_user, recipe: @recipe)
+  respond_to do |format|
+    if like.valid?
+      format.html { redirect_to :back, notice: 'Your selection was successful.' }
+    else
+      format.html { redirect_to :back, notice: 'You can only like/dislike a recipe once.' }
+    end
+  end
+end
+#source: Udemy course
+
+
 
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json

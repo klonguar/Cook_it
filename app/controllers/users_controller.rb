@@ -9,11 +9,15 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page], per_page: 2)#Source: https://www.railstutorial.org/book/updating_and_deleting_users
+    @users = User.paginate(page: params[:page], per_page: 2)
+    #Source: https://www.railstutorial.org/book/updating_and_deleting_users
+    #Source: https://hackhands.com/pagination-rails-will_paginate-gem/
   end
     
   def show
-    @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 1) #Source: https://www.railstutorial.org/book/updating_and_deleting_users
+    @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 1) 
+    #Source: https://www.railstutorial.org/book/updating_and_deleting_users
+    #Source: https://hackhands.com/pagination-rails-will_paginate-gem/
   end
   
   def destroy
