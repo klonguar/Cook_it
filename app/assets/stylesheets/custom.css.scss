@@ -96,7 +96,7 @@ margin-top: 45px;
     color: white;
 }
 
-.jumbotron a{
+.jumbotron a:visited{
     color: white;
 }
 
@@ -106,3 +106,10 @@ margin-top: 45px;
     color: #65253b;
 }
 
+a.btn.btn-xs.btn-primary{
+    color: white;
+}
+
+a.btn.btn-xs.btn-danger{
+    color: white;
+}
